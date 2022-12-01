@@ -47,4 +47,4 @@ class OwnerObjectsManager:
         # esquema para response
 
 
-        return AuthManager.encode_token(OwnerObjectsOut)
+        #return AuthManager.encode_token(OwnerObjectsOut)
