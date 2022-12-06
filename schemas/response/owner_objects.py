@@ -17,9 +17,6 @@ class ObjectsToRentOut(BaseModel):
     photo_url: str
     price: float
     price_period: Period
+    created_at: datetime
     owner_id: int
 
-
-class OwnerObjectsOut(BaseModel):
-    owner: OwnerOut
-    objects_to_rent: List[ObjectsToRentOut]
