@@ -4,7 +4,7 @@ from passlib.context import CryptContext
 
 from db import database
 from managers.auth import AuthManager
-from models import RoleType, UserState, UserType, user
+from models import UserState, UserType, user
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
@@ -52,3 +52,13 @@ class UserManager:
         if user_do["user_state"] == state:
             raise HTTPException(status_code=400, detail="Same State - It doesn't need to change")
         await database.execute(user.update().where(user.c.id == user_id).values(user_state=state))
+
+    @staticmethod
+    async def reset_user_password(email:str, new_password: str):
+        new_password_hash = pwd_context.hash(new_password)
+        user_do = await database.fetch_one(user.select().where(user.c.email == email))
+        if not user_do:
+            raise HTTPException(status_code=400, detail="User email doesn't exist")
+        await database.execute(user.update().where(user.c.id == user_do["id"]).values(password=new_password_hash))
+
+

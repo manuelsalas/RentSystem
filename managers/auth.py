@@ -51,6 +51,9 @@ def is_admin(request: Request):
     if not request.state.user["user_type"] == UserType.admin:
         raise HTTPException(status_code=403, detail="Forbidden - user is not admin")
 
+def is_user(request: Request):
+    if not request.state.user["user_type"] == UserType.user:
+        raise HTTPException(status_code=403, detail="Forbidden - log account is not user")
 
 """ def is_owner(request: Request):
     if not request.state.user["role_type"] == RoleType.owner:

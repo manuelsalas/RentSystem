@@ -8,5 +8,3 @@ class OwnerObjectsIn(BaseModel):
     photo_url: str
     price: float
     price_period: Period
-
-
