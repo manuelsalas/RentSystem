@@ -10,7 +10,7 @@ class OwnerOut(BaseModel):
     user_id: int
 
 
-class ObjectsToRentOut(BaseModel):
+class ObjectToRentOut(BaseModel):
     id: int
     title: str
     description: str
@@ -20,3 +20,5 @@ class ObjectsToRentOut(BaseModel):
     created_at: datetime
     owner_id: int
 
+class ObjectToRentListOut(ObjectToRentOut):
+    ObjToRentList: List[ObjectToRentOut]
